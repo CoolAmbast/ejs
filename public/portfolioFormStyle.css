@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 40px 15px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-form {
+    width: 100%;
+    max-width: 800px;
+    background-color: #1a1a1a;
+    padding: 30px;
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sections */
+.basicD,
+.address,
+.skill,
+.socials {
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    background-color: #161616;
+}
+
+/* Labels */
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #a0a0a0;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs, Select & Textareas */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #222222;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #ffffff;
+}
+
+/* Select specific tweaks */
+select option {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+/* Textarea height */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Invert default date picker icon so it's visible on dark bg */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.85);
+    cursor: pointer;
+}
+
+/* Submit Button */
+.submitB {
+    background-color: #ffffff;
+    color: #121212;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 24px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.submitB:hover {
+    background-color: #222222;
+    color: #ffffff;
+    border-color: #ffffff;
+}
