@@ -8,6 +8,7 @@ app.use(expressLayouts);
 app.use(express.static(path.resolve('public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve('src', 'static', 'css')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('src', 'views'));
