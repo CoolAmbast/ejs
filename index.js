@@ -19,7 +19,7 @@ app.get('/contact', (req, res) => {
   res.render('contact', { cssFile: 'contact' });
 });
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home',{ cssFile: 'home' });
 });
 app.get('/form', (req, res) => {
   res.render('portfolioForm', { cssFile: 'portfolioFormStyle' });
