@@ -13,4 +13,4 @@ console.log('This will be printed before the file data is ready:');
 
 const data = fs.readFileSync('file.txt', 'utf-8');
 console.log('File data:', data);
-console.log('This will be printed before the file data is ready:');
+console.log('This will be printed after the file data is ready:');

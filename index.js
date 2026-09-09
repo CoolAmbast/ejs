@@ -18,6 +18,9 @@ app.set('layout', 'homeLayout');
 app.get('/contact', (req, res) => {
   res.render('contact', { cssFile: 'contact' });
 });
+app.get('/signup', (req, res) => {
+  res.render('signup', { cssFile: 'signup' });
+});
 app.get('/', (req, res) => {
   res.render('home',{ cssFile: 'home' });
 });
