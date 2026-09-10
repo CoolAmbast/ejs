@@ -1,11 +1,17 @@
 import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
+import multer from 'multer';
 import signUpControl from './src/controller/signUpControl.js';
 import portfolioController, { getPortfolioData } from './src/controller/portfolioControl.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }
+});
 
 app.use(expressLayouts);
 app.use(express.static(path.resolve('public')));
@@ -49,7 +55,7 @@ app.get('/api/portfolio', async (req, res) => {
 });
 
 app.post('/signup', signUpControl);
-app.post('/portfolio', portfolioController);
+app.post('/portfolio', upload.single('resume'), portfolioController);
 
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {

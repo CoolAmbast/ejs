@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { MongoClient } from 'mongodb';
+import { put } from '@vercel/blob';
 
 const filePath = path.resolve('src', 'models', 'portfolio_data.json');
 const mongoUri = process.env.MONGODB_URI;
@@ -97,6 +98,16 @@ const portfolioController = async (req, res) => {
     github
   } = req.body;
 
+  let uploadedResume = '';
+
+  if (req.file) {
+    const blob = await put(`resumes/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
+      access: 'public',
+      contentType: req.file.mimetype
+    });
+    uploadedResume = blob.url;
+  }
+
   const portfolioData = {
     name,
     email,
@@ -110,6 +121,7 @@ const portfolioController = async (req, res) => {
     state,
     skills,
     qualifications,
+    resume: uploadedResume,
     linkedin,
     github
   };

@@ -1,18 +1,19 @@
 [
   {
-    "name": "Pranjal Ambast",
-    "email": "pranjalambast2401@gmail.com",
-    "phone": "7482045124",
-    "dob": "2026-09-11",
+    "name": "Test User",
+    "email": "test@example.com",
+    "phone": "9876543210",
+    "dob": "2000-01-01",
     "gender": "male",
-    "abMe": "test",
-    "address": "Flat section A, room no 104, 1st floor, Vastu Vihar phase-2&3, bypass road",
-    "pincode": "854326",
-    "city": "Purnia",
-    "state": "Bihar",
-    "skills": "test",
-    "qualifications": "test",
-    "linkedin": "https://linkedin/in/pranjalambast",
-    "github": "https://github.com/CoolAmbast"
+    "abMe": "hello there",
+    "address": "Main Street",
+    "pincode": "110001",
+    "city": "Delhi",
+    "state": "Delhi",
+    "skills": "Node",
+    "qualifications": "B.Tech",
+    "resume": "/uploads/1789024270540-package.json",
+    "linkedin": "https://linkedin.com/in/test",
+    "github": "https://github.com/test"
   }
 ]

@@ -2,7 +2,7 @@
     <header class="portfolio-header">
         <div>
             <p class="eyebrow">Portfolio Directory</p>
-            <h1>People and profiles</h1>
+            <h1>My Portfolio</h1>
         </div>
         <a href="/form" class="primary-btn">Add new profile</a>
     </header>
@@ -46,6 +46,7 @@
                 <div class="social-links">
                     <a href="<%= person.linkedin || '#' %>" target="_blank" rel="noreferrer">LinkedIn</a>
                     <a href="<%= person.github || '#' %>" target="_blank" rel="noreferrer">GitHub</a>
+                    <a href="<%= person.resume || '#' %>" target="_blank" rel="noreferrer">Resume</a>
                 </div>
             </article>
         <% }); %>
