@@ -34,8 +34,7 @@ const porftfolioController = (req, res) => {
     linkedin,
     github
   };
-
-  console.log('Received portfolio data:', portfolioData);
+  
   const filePath = './src/models/portfolio_data.json';
 
   let existingData = [];
