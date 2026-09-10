@@ -15,5 +15,22 @@
     "resume": "/uploads/1789024270540-package.json",
     "linkedin": "https://linkedin.com/in/test",
     "github": "https://github.com/test"
+  },
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "phone": "9876543210",
+    "dob": "2000-01-01",
+    "gender": "male",
+    "abMe": "hello there",
+    "address": "Main Street",
+    "pincode": "110001",
+    "city": "Delhi",
+    "state": "Delhi",
+    "skills": "Node",
+    "qualifications": "B.Tech",
+    "resume": "/uploads/1789024979934-package.json",
+    "linkedin": "https://linkedin.com/in/test",
+    "github": "https://github.com/test"
   }
 ]

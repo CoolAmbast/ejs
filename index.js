@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
@@ -16,6 +17,7 @@ const upload = multer({
 app.use(expressLayouts);
 app.use(express.static(path.resolve('public')));
 app.use(express.static(path.resolve('src', 'static', 'css')));
+app.use('/uploads', express.static(path.resolve('uploads')));
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 

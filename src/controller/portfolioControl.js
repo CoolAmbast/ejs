@@ -101,11 +101,25 @@ const portfolioController = async (req, res) => {
   let uploadedResume = '';
 
   if (req.file) {
-    const blob = await put(`resumes/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
-      access: 'public',
-      contentType: req.file.mimetype
-    });
-    uploadedResume = blob.url;
+    try {
+      if (process.env.BLOB_READ_WRITE_TOKEN && process.env.BLOB_STORE_ID) {
+        const blob = await put(`resumes/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
+          access: 'public',
+          contentType: req.file.mimetype
+        });
+        uploadedResume = blob.url;
+      } else {
+        const uploadDir = path.resolve('uploads');
+        fs.mkdirSync(uploadDir, { recursive: true });
+        const fileName = `${Date.now()}-${req.file.originalname.replace(/\s+/g, '-')}`;
+        const filePathForUpload = path.join(uploadDir, fileName);
+        fs.writeFileSync(filePathForUpload, req.file.buffer);
+        uploadedResume = `/uploads/${fileName}`;
+      }
+    } catch (error) {
+      console.error('Resume upload failed:', error.message);
+      uploadedResume = '';
+    }
   }
 
   const portfolioData = {
