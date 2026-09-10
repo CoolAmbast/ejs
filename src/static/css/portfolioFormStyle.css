@@ -175,6 +175,17 @@ body {
     background: #121212;
 }
 
+.resume-disabled {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #181818;
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
 .empty-state {
     padding: 28px 20px;
     text-align: center;
