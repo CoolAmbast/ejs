@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve('src', 'views'));
 app.set('layout', 'homeLayout');
 
-const renderHome = (req, res) => {
-  const portfolioData = getPortfolioData();
+const renderHome = async (req, res) => {
+  const portfolioData = await getPortfolioData();
   const submitted = req.query.submitted === '1';
 
   res.render('home', {
@@ -43,8 +43,9 @@ app.get('/form', (req, res) => {
   res.render('portfolioForm', { cssFile: 'portfolioFormStyle' });
 });
 
-app.get('/api/portfolio', (req, res) => {
-  res.json({ success: true, data: getPortfolioData() });
+app.get('/api/portfolio', async (req, res) => {
+  const data = await getPortfolioData();
+  res.json({ success: true, data });
 });
 
 app.post('/signup', signUpControl);
