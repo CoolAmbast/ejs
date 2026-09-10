@@ -4,8 +4,8 @@ import { MongoClient } from 'mongodb';
 
 const filePath = path.resolve('src', 'models', 'portfolio_data.json');
 const mongoUri = process.env.MONGODB_URI;
-const mongoDbName = process.env.MONGODB_DB || 'portfolio';
-const mongoCollectionName = process.env.MONGODB_COLLECTION || 'pranjalPortfolio';
+const mongoDbName = process.env.MONGODB_DB;
+const mongoCollectionName = process.env.MONGODB_COLLECTION;
 let mongoClient = null;
 
 const getLocalPortfolioData = () => {
