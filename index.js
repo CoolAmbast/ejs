@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
+import signUpControl from './src/controller/signUpControl.js';
+import porftfolioController from './src/controller/portfolioControl.js';
 
 const app = express();
 // uhhhh.....express layout setup ig
@@ -27,7 +29,8 @@ app.get('/', (req, res) => {
 app.get('/form', (req, res) => {
   res.render('portfolioForm', { cssFile: 'portfolioFormStyle' });
 });
-
+app.post('/signup', signUpControl);
+app.post('/portfolio', porftfolioController);
 
 // Start the server
 const PORT = 3000;
