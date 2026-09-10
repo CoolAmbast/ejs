@@ -1,11 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
-    this is the home page
-</body>
-</html>
+<div class="portfolio-shell">
+    <header class="portfolio-header">
+        <div>
+            <p class="eyebrow">Portfolio Directory</p>
+            <h1>People and profiles</h1>
+        </div>
+        <a href="/form" class="primary-btn">Add new profile</a>
+    </header>
+
+    <% if (submitted) { %>
+        <div class="notice success-notice">Portfolio submitted successfully.</div>
+    <% } %>
+
+    <% if (portfolioData && portfolioData.length) { %>
+        <% portfolioData.forEach((person) => { %>
+            <article class="portfolio-card">
+                <div class="card-topline">
+                    <h2><%= person.name || 'Unnamed profile' %></h2>
+                    <span class="badge"><%= person.gender || 'Not specified' %></span>
+                </div>
+
+                <div class="meta-grid">
+                    <p><strong>Email:</strong> <%= person.email || 'N/A' %></p>
+                    <p><strong>Phone:</strong> <%= person.phone || 'N/A' %></p>
+                    <p><strong>DOB:</strong> <%= person.dob || 'N/A' %></p>
+                    <p><strong>Location:</strong> <%= person.city || 'N/A' %>, <%= person.state || 'N/A' %></p>
+                    <p><strong>Pincode:</strong> <%= person.pincode || 'N/A' %></p>
+                    <p><strong>Address:</strong> <%= person.address || 'N/A' %></p>
+                </div>
+
+                <div class="info-block">
+                    <h3>About Me</h3>
+                    <p><%= person.abMe || 'No details added yet.' %></p>
+                </div>
+
+                <div class="info-block">
+                    <h3>Skills</h3>
+                    <p><%= person.skills || 'No skills listed.' %></p>
+                </div>
+
+                <div class="info-block">
+                    <h3>Qualifications</h3>
+                    <p><%= person.qualifications || 'No qualifications listed.' %></p>
+                </div>
+
+                <div class="social-links">
+                    <a href="<%= person.linkedin || '#' %>" target="_blank" rel="noreferrer">LinkedIn</a>
+                    <a href="<%= person.github || '#' %>" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+            </article>
+        <% }); %>
+    <% } else { %>
+        <div class="empty-state">
+            <h2>No portfolio entries yet.</h2>
+            <p>Fill out the portfolio form to add your first profile.</p>
+        </div>
+    <% } %>
+</div>

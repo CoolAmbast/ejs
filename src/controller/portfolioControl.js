@@ -1,6 +1,37 @@
 import fs from 'fs';
+import path from 'path';
 
-const porftfolioController = (req, res) => {
+const filePath = path.resolve('src', 'models', 'portfolio_data.json');
+
+export const getPortfolioData = () => {
+  try {
+    if (!fs.existsSync(filePath)) {
+      fs.mkdirSync(path.dirname(filePath), { recursive: true });
+      fs.writeFileSync(filePath, '[]');
+      return [];
+    }
+
+    const fileData = fs.readFileSync(filePath, 'utf8');
+    const parsed = JSON.parse(fileData);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.error('Portfolio data read failed:', error.message);
+    return [];
+  }
+};
+
+const savePortfolioData = (entries) => {
+  try {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, JSON.stringify(entries, null, 2));
+    return true;
+  } catch (error) {
+    console.error('Portfolio data write failed:', error.message);
+    return false;
+  }
+};
+
+const portfolioController = (req, res) => {
   const {
     name,
     email,
@@ -34,29 +65,20 @@ const porftfolioController = (req, res) => {
     linkedin,
     github
   };
-  
-  const filePath = './src/models/portfolio_data.json';
 
-  let existingData = [];
+  const existingData = getPortfolioData();
+  existingData.push(portfolioData);
+  savePortfolioData(existingData);
 
-  try {
-    const fileData = fs.readFileSync(filePath, 'utf8');
-
-    if (fileData) {
-      existingData = JSON.parse(fileData);
-      if (!Array.isArray(existingData)) {
-        existingData = [];
-      }
-    }
-  } catch (err) {
-    console.log('No existing file found, creating new one.');
+  if (req.accepts('html')) {
+    return res.redirect('/home?submitted=1');
   }
 
-  existingData.push(portfolioData);
-
-  fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
-
-  res.send('Portfolio submitted successfully!');
+  return res.status(201).json({
+    success: true,
+    message: 'Portfolio submitted successfully!',
+    data: portfolioData
+  });
 };
 
-export default porftfolioController;
+export default portfolioController;

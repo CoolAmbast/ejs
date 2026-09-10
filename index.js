@@ -2,38 +2,58 @@ import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import signUpControl from './src/controller/signUpControl.js';
-import porftfolioController from './src/controller/portfolioControl.js';
+import portfolioController, { getPortfolioData } from './src/controller/portfolioControl.js';
 
 const app = express();
-// uhhhh.....express layout setup ig
+const PORT = process.env.PORT || 3000;
+
 app.use(expressLayouts);
 app.use(express.static(path.resolve('public')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve('src', 'static', 'css')));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('src', 'views'));
 app.set('layout', 'homeLayout');
 
+const renderHome = (req, res) => {
+  const portfolioData = getPortfolioData();
+  const submitted = req.query.submitted === '1';
+
+  res.render('home', {
+    cssFile: 'portfolioFormStyle',
+    portfolioData,
+    submitted
+  });
+};
 
 app.get('/contact', (req, res) => {
   res.render('contact', { cssFile: 'contact' });
 });
+
 app.get('/signup', (req, res) => {
   res.render('signup', { cssFile: 'signup' });
 });
-app.get('/', (req, res) => {
-  res.render('home',{ cssFile: 'home' });
-});
+
+app.get('/', renderHome);
+app.get('/home', renderHome);
+
 app.get('/form', (req, res) => {
   res.render('portfolioForm', { cssFile: 'portfolioFormStyle' });
 });
-app.post('/signup', signUpControl);
-app.post('/portfolio', porftfolioController);
 
-// Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is listening at http://localhost:${PORT}`);
+app.get('/api/portfolio', (req, res) => {
+  res.json({ success: true, data: getPortfolioData() });
 });
+
+app.post('/signup', signUpControl);
+app.post('/portfolio', portfolioController);
+
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is listening at http://localhost:${PORT}`);
+  });
+}
+
+export default app;

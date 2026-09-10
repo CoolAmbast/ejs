@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<%= cssFile%>.css">
+    <link rel="stylesheet" href="/<%= cssFile %>.css">
     <title>Portfolio</title>
 </head>
 <body>
-    <p>This is the home layout.</p>
-    <%-body%>
+    <nav class="top-nav">
+        <a href="/">Portfolio Home</a>
+        <a href="/form">Portfolio Form</a>
+        <a href="/signup">Sign Up</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <%- body %>
 </body>
 </html>
